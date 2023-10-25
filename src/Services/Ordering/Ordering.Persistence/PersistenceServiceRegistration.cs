@@ -7,7 +7,7 @@ using Ordering.Persistence.Repositories;
 
 namespace Ordering.Persistence;
 
-public static class PersistenceServiceRegistration
+public static class PersistenceServiceRegistration 
 {
     public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
     {
