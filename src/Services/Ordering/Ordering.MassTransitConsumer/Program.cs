@@ -27,8 +27,8 @@ builder.Services.AddMassTransit(x =>
     {
         cfg.Host(new Uri("amqps://pzgfgcrj:77QOhiJEDce-Wyb3T4G-qIdN-tfDr-Ay@hawk.rmq.cloudamqp.com/pzgfgcrj"), h =>
         {
-            h.Username("pzgfgcrj");
-            h.Password("77QOhiJEDce-Wyb3T4G-qIdN-tfDr-Ay");
+            h.Username("<username>");
+            h.Password("<password>");
         });
         cfg.ConfigureEndpoints(context);
     });
