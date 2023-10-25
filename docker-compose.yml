@@ -1,0 +1,63 @@
+version: '3.4'
+
+services:
+  customers.webapi:
+    container_name: c_customer
+    image: ${DOCKER_REGISTRY-}customerswebapi
+    build:
+      context: .
+      dockerfile: src/Services/Customers/Customers.WebApi/Dockerfile
+    ports:
+      - "7101:80"
+    networks:
+      - microservices
+  
+  ordering.webapi:
+    container_name: c_order
+    image: ${DOCKER_REGISTRY-}orderingwebapi
+    build:
+      context: .
+      dockerfile: src/Services/Ordering/Ordering.WebApi/Dockerfile
+    ports:
+      - "7102:80"
+    networks:
+      - microservices
+
+
+  ordering.masstransitconsumer:
+    container_name: c_consumer
+    image: ${DOCKER_REGISTRY-}orderingmasstransitconsumer
+    build:
+      context: .
+      dockerfile: src/Services/Ordering/Ordering.MassTransitConsumer/Dockerfile
+    ports:
+      - "7103:80"
+    networks:
+      - microservices
+
+  apigateway:
+    container_name: c_gateway
+    image: ${DOCKER_REGISTRY-}apigateway
+    build:
+      context: .
+      dockerfile: ApiGateway/Dockerfile
+    ports:
+      - "7100:80"
+    networks:
+      - microservices
+
+  apigateway.consul:
+    container_name: c_consul
+    image: consul:1.15.4
+    ports:
+      - "8500:8500" # Web UI
+      - "8600:8600/udp" # DNS
+      - "8600:8600/tcp" # DNS
+    command: "agent -server -ui -client=0.0.0.0 -bootstrap-expect=1 -bind=0.0.0.0"
+    networks:
+      - microservices
+
+networks:
+  microservices:
+    driver: bridge
+

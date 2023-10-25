@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Orders\Constants\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="MassTransit.RabbitMQ" Version="8.1.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="7.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Core" Version="7.0.10" />
+		<PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="7.0.10" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10" />
+		
+	</ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CoreFramework\CoreFramework.Application\CoreFramework.Application.csproj" />
+    <ProjectReference Include="..\CoreFramework\CoreFramework.Mailing\CoreFramework.Mailing.csproj" />
+    <ProjectReference Include="..\CoreFramework\CoreFramework.Persistence\CoreFramework.Persistence.csproj" />
+    <ProjectReference Include="..\Ordering.Domain\Ordering.Domain.csproj" />
+    <ProjectReference Include="..\Ordering.Infrastructure\Ordering.Infrastructure.csproj" />
+    <ProjectReference Include="..\Ordering.MassTransitShared\Ordering.MassTransitShared.csproj" />
+  </ItemGroup>
+
+</Project>
